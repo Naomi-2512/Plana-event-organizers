@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="content">
+        <div class="titleDiv">
+            <h2></h2>
+            <h2>UserName</h2>
+            <h2>Email</h2>
+            <h2>PhoneNumber</h2>
+            <h2>As</h2>
+            <h2>Action</h2>
+        </div>
+        <div class="detailsDiv" *ngFor="let user of users">
+            <div class="imageDiv">
+                <img [src]="user.image" [alt]="user.name">
+            </div>
+            <h3>{{user.name}}</h3>
+             <h3>{{user.Email}}</h3>
+             <h3>{{user.phoneNumber}}</h3>
+             <h3> {{user.role}}</h3>
+             <button>Confirm</button>
+        </div>
+    </div>
+</div>
+

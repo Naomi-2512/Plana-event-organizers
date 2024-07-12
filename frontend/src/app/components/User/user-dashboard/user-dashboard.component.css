@@ -1,0 +1,21 @@
+.entirePage {
+    display: flex;
+  }
+  
+  .container{
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s, width 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content.collapsed {
+    margin-left: 50px;
+    width: calc(100% - 50px);
+  }
+  
+  .content {
+    margin-top: 50px;
+    padding: 20px;
+  }

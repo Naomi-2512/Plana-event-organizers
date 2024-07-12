@@ -1,0 +1,179 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    background-color:#8D6F64 ;
+    top: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+nav bar{
+    display: block;
+}
+
+header {
+    background-image: url('../../../../public/drinks-1283608_1280.jpg');
+    object-fit: cover;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    position: relative;
+    height: 100vh;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.header-content {
+    padding: 50px 0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+}
+
+header button {
+    padding: 10px 20px;
+    background-color: #f90;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 150px;
+    height: 50px;
+}
+header button:hover{
+    background-color: #8D6F64;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px 20px;
+    background-color: #f7f7f7;
+}
+
+.about-image {
+    width: 40%;
+    height: 400px;
+    background-color: #ccc;
+    /* Placeholder for image */
+}
+.about-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-content {
+    width: 50%;
+}
+
+.about-content h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.about-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.about-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-content ul li {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.services {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.services h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-item {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.events {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+.event-item {
+    width: 200px;
+    height: 150px;
+    background-color: #ccc;
+    margin: 10px;
+    border-radius: 5px;
+}
+.event-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #8D6F64 ;
+    color: white;
+}
+
+footer h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+

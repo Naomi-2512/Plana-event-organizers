@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="productDiv" *ngFor="let event of events">
+        <div class="imageDiv">
+         <img [src]="event.image" [alt]="event.name">
+        </div>
+        <div class="productDetails">
+         <div class="details">
+             <h3>{{event.title}}</h3>
+             <h3>{{event.description}}</h3>
+             <h3>duration: 4{{event.duration}}</h3>
+             <h3> {{event.amount}}</h3>
+         </div>
+         <div class="buttonDiv">
+             <button>Book</button>
+             <button>View</button>
+         </div>
+        </div>
+     </div>
+</div>

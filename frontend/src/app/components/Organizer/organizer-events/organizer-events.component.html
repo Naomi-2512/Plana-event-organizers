@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="btn">
+        <button (click)="toggleForm()">Add Event</button>
+    </div>
+   
+    <div class="content">
+        <div class="titleDiv">
+            <h1>Image</h1>
+            <h1>Title</h1>
+            <h1>Price</h1>
+            <h1>Location</h1>
+            <h1>Duration</h1>
+            <h1></h1>
+        </div>
+        <div class="detailsDiv" *ngFor="let event of events">
+            <div class="imageDiv">
+                <img [src]="event.image" [alt]="event.name">
+            </div>
+            <h3>{{event.title}}</h3>
+             <h3>{{event.amount}}</h3>
+             <h3>{{event.location}}</h3>
+             <h3> {{event.duration}}</h3>
+             <button><img src="edit_note_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+            <button><img src="delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+        </div>
+    </div>
+
+
+    <div class="form-container" *ngIf="showForm">
+        <form action="">
+            <label for="">Title:</label>
+            <input type="text">
+            <label for="start-date">start-date</label>
+            <input type="text">
+            <label for="">end-date</label>
+            <input type="text">
+            <label for="">location</label>
+            <input type="text">
+            <label for="">Description</label>
+            <input type="text">
+            <label for="">Image</label>
+            <input type="file">
+            <label for="">price</label>
+            <input type="text">
+            <label for="">ticketsNumber</label>
+            <input type="text">
+            <label for="ticketType">Ticket Type:</label>
+            <select id="ticketType" >
+                <option value="1 person">1 Person</option>
+                <option value="group of five">Group of Five</option>
+            </select>
+            <button type="submit">Create</button>
+            <button type="button" (click)="toggleForm()">Cancel</button> 
+            
+        </form>
+        
+    </div>
+
+</div>
+
+
