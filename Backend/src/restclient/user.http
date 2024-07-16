@@ -1,0 +1,13 @@
+### register user
+POST http://localhost:3000/users/create
+Content-type: application/json
+
+{
+    "userName" : "NaomiC",
+    "phoneNumber" : "0143276543",
+    "email" : "naomichege2512@gmail.com",
+    "password" : "@Nakeez2512",
+    "profileImage" : "https://th.bing.com/th/id/R.50631c317e66eebf4900c4f49c632cd7?rik=aCtbLH8YYDyYjw&pid=ImgRaw&r=0",
+    "location" : "Kieni",
+    "userRole" : "admin"
+}
