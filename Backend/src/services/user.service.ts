@@ -141,7 +141,7 @@ export class UserService {
         }
     }
     async updateAllUsersRoleByAdmin() {
-        let result = (await Helper.query(`update users set isManager = 1 where role = 'manager'`)).rowsAffected;
+        let result = (await Helper.query(`update Users set isManager = 1 where userRole = 'manager'`)).rowsAffected;
     
         if (result[0] < 1) {
           return {

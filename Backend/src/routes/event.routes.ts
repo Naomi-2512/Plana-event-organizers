@@ -2,21 +2,21 @@ import { Router } from 'express';
 import { EventsController } from '../controllers/event.controller';
 import { verifyTokens } from '../middlewares/verifyToken';
 
-const eventsRouter = new EventsController();
-const router = Router();
+const eventsController = new EventsController();
+const eventsRouter = Router();
 
-router.post('/create', verifyTokens, eventsRouter.createEvent);
+eventsRouter.post('/create', verifyTokens, eventsController.createEvent);
 
-router.put('/update', verifyTokens, eventsRouter.updateEvent);
+eventsRouter.put('/update', verifyTokens, eventsController.updateEvent);
 
-router.put('/updateStatus', verifyTokens, eventsRouter.updateEventStatusByAdmin);
+eventsRouter.put('/updateStatus', verifyTokens, eventsController.updateEventStatusByAdmin);
 
-router.put('/updateAllStatuses', verifyTokens, eventsRouter.updateAllEventStatusByAdmin);
+eventsRouter.put('/updateAllStatuses', verifyTokens, eventsController.updateAllEventStatusByAdmin);
 
-router.get('/oneEvent', verifyTokens, eventsRouter.getEventByEventId);
+eventsRouter.get('/oneEvent', verifyTokens, eventsController.getEventByEventId);
 
-router.get('/allEvents', verifyTokens, eventsRouter.getAllEvents);
+eventsRouter.get('/allEvents', verifyTokens, eventsController.getAllEvents);
 
-router.delete('/delete', verifyTokens, eventsRouter.deleteEvent);
+eventsRouter.delete('/delete', verifyTokens, eventsController.deleteEvent);
 
-export default router;
+export default eventsRouter;

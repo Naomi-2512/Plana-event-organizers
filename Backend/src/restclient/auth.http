@@ -1,0 +1,8 @@
+### Login user
+PUT http://localhost:3000/auth/login
+Content-type: application/json
+
+{
+   "email" : "kristen@gmail.com",
+    "password" : "@kristen25"
+}

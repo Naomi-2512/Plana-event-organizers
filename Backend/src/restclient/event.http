@@ -1,0 +1,20 @@
+### create an event
+POST http://localhost:3000/events/create
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3YTE3OWZhNy05YTY2LTQyNmMtYjBmMi0zNTBiNjM2NjI4ZDIiLCJ1c2VyTmFtZSI6IktyaXN0ZW4iLCJwaG9uZU51bWJlciI6IjAxNDMyNzY1OTQiLCJlbWFpbCI6ImtyaXN0ZW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTMkaDd3V2U0azBSaWxQSVI2a1duUlp3dTNlV3lTWkp5akl1Y1kwcklqbmFoN3BsNHNFbzdweTIiLCJwcm9maWxlSW1hZ2UiOiJodHRwczovL3RoLmJpbmcuY29tL3RoL2lkL1IuNTA2MzFjMzE3ZTY2ZWViZjQ5MDBjNGY0OWM2MzJjZDc_cmlrPWFDdGJMSDhZWUR5WWp3JnBpZD1JbWdSYXcmcj0wIiwibG9jYXRpb24iOiJUaGlrYSIsInVzZXJSb2xlIjoibWFuYWdlciIsImlzTWFuYWdlciI6dHJ1ZSwiaXNEZWxldGVkIjpmYWxzZSwiaXNXZWxjb21lIjpmYWxzZSwiaWF0IjoxNzIxMjE2MzE5LCJleHAiOjE3MjEyMjM1MTl9.fPLIwUK-CyvSYFKKB3lYa795EmBjqDvwENLJGHnfmMA
+
+{
+    "eventName" :"Zain concert",
+    "startDate"  :"2024-7-22",
+    "endDate" :"2024-7-26",
+    "location" :"Instabul",
+    "description" :"Rocking with Zayn Malik",
+    "longDescription"  :"6 days concert,day and night..Snacks are provided..Book now!!" ,
+    "images"  :"https://th.bing.com/th/id/OIP.KUvp0P4OpY0dvpDA26DclwHaHi?rs=1&pid=ImgDetMain",
+    "single"  :"2000",
+    "couple"  :"3500",
+    "groups"  :"8000",
+    "totalTickets"  :"1000",
+    "bookingDeadline":"2024-7-20"
+}
+      

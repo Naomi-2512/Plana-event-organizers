@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import userRouter from './routes/user.routes'
 import bookingRouter from './routes/bookings.routes'
 import eventsRouter from './routes/event.routes'
+import authRouter from './routes/auth.routes';
 
 dotenv.config();
 
@@ -13,7 +14,8 @@ app.use(json());
 app.use(cors());
 app.use('/users',userRouter);
 app.use('/bookings',bookingRouter);
-app.use('events' , eventsRouter)
+app.use('/events' , eventsRouter);
+app.use('/auth', authRouter);
 
 app.use((err:Error, req:Request,res:Response, next:NextFunction) => {
     res.json({

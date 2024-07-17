@@ -2,26 +2,26 @@ import { Router } from 'express';
 import { UserController } from '../controllers/user.controller';
 import {verifyTokens} from '../middlewares/verifyToken';
 
-const userRouter = new UserController();
-const router = Router();
+const userContoller = new UserController();
+const userRouter = Router();
 
 
-router.post('/create', userRouter.createUser);
+userRouter.post('/create', userContoller.createUser);
 
-router.put('/update', verifyTokens, userRouter.updateUser);
+userRouter.put('/update', verifyTokens, userContoller.updateUser);
 
-router.get('/allUsers', verifyTokens, userRouter.getAllUsers);
+userRouter.get('/allUsers', verifyTokens, userContoller.getAllUsers);
 
-router.get('/user-id', verifyTokens, userRouter.getUserById);
+userRouter.get('/user-id', verifyTokens, userContoller.getUserById);
 
-router.get('/user-role', verifyTokens, userRouter.getUserByRole);
+userRouter.get('/user-role', verifyTokens, userContoller.getUserByRole);
 
-router.put('/updateAll', verifyTokens, userRouter.updateAllUsersRoleByAdmin);
+userRouter.put('/updateAll', verifyTokens, userContoller.updateAllUsersRoleByAdmin);
 
-router.delete('/delete', verifyTokens, userRouter.softDeleteUser);
+userRouter.put('/delete/:userId', verifyTokens, userContoller.softDeleteUser);
 
-router.put('/getUser', verifyTokens, userRouter.retrieveDeletedUser);
+userRouter.put('/getUser/:userId', verifyTokens, userContoller.retrieveDeletedUser);
 
-router.get('/getUsers', verifyTokens, userRouter.retrieveAllDeletedUsers);
+userRouter.put('/getUsers', verifyTokens, userContoller.retrieveAllDeletedUsers);
 
-export default router;
+export default userRouter;

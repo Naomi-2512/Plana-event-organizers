@@ -2,19 +2,19 @@ import { Router } from 'express';
 import { BookingController } from '../controllers/bookings.controller';
 import { verifyTokens } from '../middlewares/verifyToken';
 
-const bookingRouter = new BookingController();
-const router = Router();
+const bookingController = new BookingController();
+const bookingRouter = Router();
 
-router.post('/create', verifyTokens, bookingRouter.createBooking);
+bookingRouter.post('/create', verifyTokens, bookingController.createBooking);
 
-router.put('/update', verifyTokens, bookingRouter.updateBooking);
+bookingRouter.put('/update', verifyTokens, bookingController.updateBooking);
 
-router.delete('/delete', verifyTokens, bookingRouter.deleteBooking);
+bookingRouter.delete('/delete', verifyTokens, bookingController.deleteBooking);
 
-router.get('/allBookings', verifyTokens, bookingRouter.getAllBookingsByUserId);
+bookingRouter.get('/allBookings', verifyTokens, bookingController.getAllBookingsByUserId);
 
-router.get('/bookedUsers', verifyTokens, bookingRouter.getBookedUsers);
+bookingRouter.get('/bookedUsers', verifyTokens, bookingController.getBookedUsers);
 
-router.put('/updateStatus', verifyTokens, bookingRouter.updateBookStatus);
+bookingRouter.put('/updateStatus', verifyTokens, bookingController.updateBookStatus);
 
-export default router;
+export default bookingRouter;
