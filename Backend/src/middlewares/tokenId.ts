@@ -1,7 +1,7 @@
 import { Tokens } from "../interfaces/interface";
 import { extendedRequest } from "./verifyToken";
 
-export const getIdFromToken = async (req: extendedRequest):Promise<string> => {
+export const getIdFromToken =  (req: extendedRequest):string => {
   
     let info = req.info as Tokens;
   

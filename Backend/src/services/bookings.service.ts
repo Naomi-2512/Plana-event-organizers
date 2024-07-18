@@ -35,7 +35,7 @@ export class BookingService {
         bookId: v4(),
         eventId: eventId,
         userId: userId,
-        ticket_type: booking.ticketType,
+        ticketType: booking.ticketType,
       })
     ).rowsAffected;
 
@@ -69,7 +69,7 @@ export class BookingService {
 
     if (userExists.length == 0) {
       return {
-        error: "Failed to update the event",
+        error: "Failed to update booking",
       };
     }
 
@@ -190,6 +190,7 @@ export class BookingService {
   async getAllBookingsByUserId(userId: string) {
     let eventIds: string[] = [];
     let fetchedEvents: Events[] = [];
+    let fetchedBookings: Bookings[] = [];
 
     let userExists = (
       await Helper.query(`select * from Users where userId = '${userId}'`)
@@ -238,9 +239,21 @@ export class BookingService {
             error: "unable to retrieve the events",
           };
         } else {
+          let books = (await Helper.query(`SELECT * FROM Bookings WHERE userId = '${userId}'`)).recordset;
+
+          if (lodash.isEmpty(books)) {
+            return {
+              error: "No bookings found",
+            };
+          }
+
+          else {
+            fetchedBookings = books;
+          }
           return {
-            message: "Events successfully retrieved",
+            message: "Booked Events successfully retrieved",
             events: fetchedEvents,
+            bookings: fetchedBookings
           };
         }
       }
@@ -345,7 +358,7 @@ export class BookingService {
       }
     }
 
-    let result = (await Helper.query(`update bookings set book_status = 1 where bookId = '${bookId}'`)).rowsAffected;
+    let result = (await Helper.query(`update bookings set bookStatus = 1 where bookId = '${bookId}'`)).rowsAffected;
 
     if (result[0] < 1) {
       return {
@@ -359,4 +372,108 @@ export class BookingService {
       }  
     }
   }
+
+  async getApprovedBookedUsers(manager_id: string) {
+    let userIds: string[] = [];
+    let eventIds: string[] = [];
+    let fetchedUsers: Users[] = [];
+    let approvedEvents: Events[] = [];
+    let finalEvents: Events[] = [];
+
+    let userExists = (
+      await Helper.query(`select * from Users where userId = '${manager_id}'`)
+    ).recordset;
+
+    if (userExists.length == 0) {
+      return {
+        error: "Unable to get users who have booked these events",
+      };
+    }
+
+    let eventsCreated = await eventService.getEventByUserId(manager_id);
+
+    if (eventsCreated.error) {
+      return {
+        error: eventsCreated.error,
+      };
+    } else if (eventsCreated.events) {
+      let createdEvents = eventsCreated.events as Events[];
+
+      for (let createdEvent of createdEvents) {
+        eventIds.push(createdEvent.eventId);
+      }
+
+      if(eventIds.length == 0 ) {
+        return {
+          error: "Event creater cannot be found"
+        }
+      }
+
+      else {
+        for (let eventId of eventIds) {
+          let bookingsAvailable = (await Helper.query(
+            `select * from Bookings where eventId = '${eventId}' and bookStatus = 1`
+          )).recordset;
+
+          if (lodash.isEmpty(bookingsAvailable)) {
+            return {
+              error: "This event has no bookings yet"
+            };
+          } else {
+            for (let booking of bookingsAvailable) {
+              userIds.push(booking.userId);
+              approvedEvents.push(booking.eventId);
+            }
+
+            if (userIds.length == 0) {
+              return {
+                error: "Unable to display users who have booked this event",
+              };
+            }
+            else {
+              for (let userId of userIds) {
+                let retrievedUser = await userSevice.getUserById(userId);
+
+                if(retrievedUser.error) {
+                  return {
+                    error: "The history of the user does not exist."
+                  }
+                  break;
+                }
+                else if (retrievedUser.user) {
+                  fetchedUsers.push(retrievedUser.user[0] as unknown as Users);
+                }
+              }
+
+              if (fetchedUsers.length == 0) {
+                return {
+                  error: "Unable to display the approved users retrieved.",
+                };
+              }
+              else {
+                 for(let approvedEvent of approvedEvents) {
+                   let eventDetails = await eventService.getEventByEventId(approvedEvent.eventId);
+                   if(eventDetails.error) {
+                     return {
+                       error: "Unable to retrieve event details"
+                     }
+                    }
+                   else if (eventDetails.event) {
+                     let eventDetailsData = eventDetails.event as Events[];
+                     finalEvents.push(eventDetailsData[0]);
+                   }
+                 }
+                return {
+                  message: "approved users successfully retrieved",
+                  users: fetchedUsers,
+                  events: finalEvents,
+                };
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ 
 }

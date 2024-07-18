@@ -110,7 +110,7 @@ export class EventService {
   
       let result = (
         await Helper.query(
-          `update Events set eventStatus = 'approved' where eventId = '${eventId}'`
+          `update Events set eventStatus = 1 where eventId = '${eventId}'`
         )
       ).rowsAffected;
   
@@ -128,7 +128,7 @@ export class EventService {
     async updateAllEventStatusByAdmin() {
       let result = (
         await Helper.query(
-          `update Events set eventStatus = 'approved' where eventStatus = 'pending'`
+          `update Events set eventStatus = 1 where eventStatus = 0`
         )
       ).rowsAffected;
   
@@ -191,6 +191,21 @@ export class EventService {
         };
       }
     }
+
+    async getApprovedEvents() {
+      let result = (await Helper.query(`select * from Events where eventStatus = 1`)).recordset;
+  
+      if (lodash.isEmpty(result)) {
+        return {
+          error: "No approved events",
+        };
+      } else {
+        return {
+          message: "successfully retrieved approved events",
+          events: result,
+        };
+      }
+    }
   
     async deleteEvent(eventId: string) {
       let eventExists = (
@@ -240,7 +255,7 @@ export class EventService {
         case "couple": {
           let result = (
             await Helper.query(`update Events set bookedTickets = bookedTickets + 2, 
-            remaining_tickets = totalTickets - (bookedTickets + 2) where eventId = '${eventId}'`)
+            remainingTickets = totalTickets - (bookedTickets + 2) where eventId = '${eventId}'`)
           ).rowsAffected;
   
           if (result[0] < 1) {

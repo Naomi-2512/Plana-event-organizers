@@ -129,5 +129,26 @@ export class BookingController {
     }
 
   }
+  async getApprovedBookedUsers(req: Request, res: Response) {
+
+    try {
+      
+      let userId = await getIdFromToken(req);
+
+      if(userId == '') {
+        return res.status(501).json({
+          error: "Could not get id from token headers"
+        })
+      }
+
+      let result = await bookingService.getApprovedBookedUsers(userId);
+      
+      return res.status(201).json(result);
+
+    } catch (error) {
+      return res.json({error})
+    }
+
+  }
 
 }

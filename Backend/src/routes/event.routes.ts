@@ -7,16 +7,18 @@ const eventsRouter = Router();
 
 eventsRouter.post('/create', verifyTokens, eventsController.createEvent);
 
-eventsRouter.put('/update', verifyTokens, eventsController.updateEvent);
+eventsRouter.post('/update/:eventId', verifyTokens, eventsController.updateEvent);
 
-eventsRouter.put('/updateStatus', verifyTokens, eventsController.updateEventStatusByAdmin);
+eventsRouter.put('/updateStatus/:eventId', verifyTokens, eventsController.updateEventStatusByAdmin);
 
 eventsRouter.put('/updateAllStatuses', verifyTokens, eventsController.updateAllEventStatusByAdmin);
 
-eventsRouter.get('/oneEvent', verifyTokens, eventsController.getEventByEventId);
+eventsRouter.get('/oneEvent/:eventId', verifyTokens, eventsController.getEventByEventId);
 
 eventsRouter.get('/allEvents', verifyTokens, eventsController.getAllEvents);
 
-eventsRouter.delete('/delete', verifyTokens, eventsController.deleteEvent);
+eventsRouter.get('/approvedEvents', verifyTokens, eventsController.getApprovedEvents);
+
+eventsRouter.delete('/delete/:eventId', verifyTokens, eventsController.deleteEvent);
 
 export default eventsRouter;

@@ -7,15 +7,18 @@ const eventservice = new EventService()
 export class EventsController {
 
   async createEvent(req: Request, res: Response) {
+    
 
     try {
-      let userId = await getIdFromToken(req);
+      let userId =  getIdFromToken(req);
+      
 
-      if (userId = '') {
+      if (userId == '') {
         return res.status(501).json({
           error: "Could not get id from the token"
         })
       }
+      
   
       let { error } = eventSchema.validate(req.body);
   
@@ -35,9 +38,9 @@ export class EventsController {
   async updateEvent(req: Request, res: Response) {
 
     try {
-      let userId = await getIdFromToken(req);
+      let userId =  getIdFromToken(req);
 
-      if (userId = '') {
+      if (userId == '') {
         return res.status(501).json({
           error: "Could not get id from token headers"
         })
@@ -49,7 +52,7 @@ export class EventsController {
         return res.status(401).json({error})
       }
 
-      let response = await eventservice.updateEvent(req.params.event_id, userId, req.body);
+      let response = await eventservice.updateEvent(req.params.eventId, userId, req.body);
 
       return res.status(201).json(response);
     } catch (error) {
@@ -62,7 +65,7 @@ export class EventsController {
 
     try {
 
-      let response = await eventservice.updateEventStatusByAdmin(req.params.event_id);
+      let response = await eventservice.updateEventStatusByAdmin(req.params.eventId);
 
       return res.status(201).json(response);
     } catch (error) {
@@ -88,7 +91,7 @@ export class EventsController {
 
     try {
 
-      let response = await eventservice.getEventByEventId(req.params.event_id);
+      let response = await eventservice.getEventByEventId(req.params.eventId);
 
       return res.status(201).json(response);
     } catch (error) {
@@ -110,11 +113,24 @@ export class EventsController {
 
   }
 
+  async getApprovedEvents(req: Request, res: Response) {
+
+    try {
+
+      let response = await eventservice.getApprovedEvents();
+
+      return res.status(201).json(response);
+    } catch (error) {
+      return res.json({error})
+    }
+
+  }
+
   async deleteEvent(req: Request, res: Response) {
 
     try {
 
-      let response = await eventservice.deleteEvent(req.params.event_id);
+      let response = await eventservice.deleteEvent(req.params.eventId);
 
       return res.status(201).json(response);
     } catch (error) {
