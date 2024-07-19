@@ -39,7 +39,7 @@ export class BookingController {
         })
       }
 
-      let result = await bookingService.updateBooking(req.params.eventId, userId, req.body);
+      let result = await bookingService.updateBooking(req.params.bookId, userId, req.body);
       
       return res.status(201).json(result);
 

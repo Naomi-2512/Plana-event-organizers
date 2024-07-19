@@ -62,7 +62,9 @@ export class BookingService {
     }
   }
 
-  async updateBooking(eventId: string, userId: string, booking: Bookings) {
+  async updateBooking(bookId: string, userId: string, booking: Bookings) {
+    console.log(booking.ticketType);
+    
     let userExists = (
       await Helper.query(`select * from Users where userId = '${userId}'`)
     ).recordset;
@@ -73,25 +75,15 @@ export class BookingService {
       };
     }
 
-    let eventExists = (
-      await Helper.query(`select * from Events where eventId = '${eventId}'`)
-    ).recordset;
-
-    if (lodash.isEmpty(eventExists)) {
-      return {
-        error: "This event does not exist",
-      };
-    }
-
     let bookingExists = (
       await Helper.query(
-        `select * from Bookings where eventId = '${eventId}' AND userId = '${userId}' AND bookStatus = 0`
+        `select * from Bookings where bookId = '${bookId}' AND userId = '${userId}' AND bookStatus = 0`
       )
-    ).recordset;
+    ).recordset as Bookings[];
 
     if (lodash.isEmpty(bookingExists)) {
       return {
-        error: "failed to update...the event is approved",
+        error: "no available bookings",
       };
     }
 
@@ -121,7 +113,7 @@ export class BookingService {
       }
 
       let decider = await eventService.bookingTally(
-        eventId,
+        bookingExists[0].bookId,
         booking.ticketType
       );
 
@@ -181,7 +173,7 @@ export class BookingService {
           };
         }
         return {
-          message: "Number of booked tickets updated successfully",
+          message: "booking deleted successfully",
         };
       }
     }

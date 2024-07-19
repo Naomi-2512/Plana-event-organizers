@@ -79,7 +79,7 @@ export class UserController {
   async getUserById(req: Request, res: Response) {
     try {
 
-      let userId = await getIdFromToken(req);
+      let userId =  getIdFromToken(req);
 
       if (!userId) {
         return res.status(501).json({

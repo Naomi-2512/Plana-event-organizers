@@ -150,7 +150,7 @@ export class UserService {
         }
         else {
           return {
-            message: "Confirmed,,you can organize events"
+            message: "All managers approved successfully"
           }
         }
     }

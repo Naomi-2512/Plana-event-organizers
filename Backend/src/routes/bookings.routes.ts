@@ -7,7 +7,7 @@ const bookingRouter = Router();
 
 bookingRouter.post('/create/:eventId', verifyTokens, bookingController.createBooking);
 
-bookingRouter.put('/update/:eventId', verifyTokens, bookingController.updateBooking);
+bookingRouter.put('/update/:bookId', verifyTokens, bookingController.updateBooking);
 
 bookingRouter.delete('/delete/:bookId', verifyTokens, bookingController.deleteBooking);
 
