@@ -5,6 +5,18 @@
     justify-content: center;
     align-items: center;
 }
+.message{
+    display: none;
+    width: 40%;
+    color: white;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border-radius: 10px;
+    top: 5vh;
+    padding:10px;
+}
 .container{
     width: 70%;
     height: 60%;

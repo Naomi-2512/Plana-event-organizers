@@ -15,6 +15,8 @@ eventsRouter.put('/updateAllStatuses', verifyTokens, eventsController.updateAllE
 
 eventsRouter.get('/oneEvent/:eventId', verifyTokens, eventsController.getEventByEventId);
 
+eventsRouter.get('/anEvent', verifyTokens, eventsController.getEventByUserId);
+
 eventsRouter.get('/allEvents', verifyTokens, eventsController.getAllEvents);
 
 eventsRouter.get('/approvedEvents', verifyTokens, eventsController.getApprovedEvents);

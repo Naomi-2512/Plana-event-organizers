@@ -458,7 +458,7 @@ export class BookingService {
                 return {
                   message: "approved users successfully retrieved",
                   users: fetchedUsers,
-                  events: finalEvents,
+                  events: finalEvents as Events[],
                 };
               }
             }

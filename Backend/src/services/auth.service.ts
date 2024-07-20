@@ -32,7 +32,8 @@ export const loginUser = async (logins: Logins) => {
 
     return {
       message: "Welcome Back,You have successfully logged in",
-      token
+      userRole:emailExists[0].userRole,
+      token: token
     }
   }
 

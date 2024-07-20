@@ -3,6 +3,6 @@ PUT http://localhost:3000/auth/login
 Content-type: application/json
 
 {
-   "email" : "naomichege2512@gmail.com",
-    "password" : "@Nakeez2512"
+   "email" : "dan@gmail.com",
+    "password" : "@john2512"
 }

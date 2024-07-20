@@ -1,20 +1,26 @@
 <div class="entirePage">
+  <div class="message" *ngIf="errorMessage" [style]="display">
+    <p>{{errorMessage}}</p>
+  </div>
+  <div class="message" *ngIf="success" [style]="display">
+    <p>{{success}}</p>
+  </div>
     <div class="container">
         <div class="imageDiv">
             <img src="../../../form.jpg" alt="image">
         </div>
         <div class="formDiv">
-            <form >
+            <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm.value)">
               <div class="title">
                 <h1 style="color:#8D6F64;">Welcome back!!!</h1>
               </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" id="email"  name="email" >
+                    <input type="email" id="email"  ngModel name="email" >
                   </div>
                   <div class="form-group">
                     <label for="password">Password *</label>
-                    <input type="password" id="password" name="password" >
+                    <input type="password" id="password" name="password" ngModel>
                   </div>
                   <div class="formGroup">
                     <p>Forgot Password? <a routerLink="/resetPassword" style="color: #8D6F64;">Reset here</a></p>

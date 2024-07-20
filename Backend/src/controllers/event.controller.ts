@@ -139,4 +139,23 @@ export class EventsController {
 
   }
 
+  async getEventByUserId(req:Request, res:Response){
+    try {
+      let userId =  getIdFromToken(req);
+
+      if (userId == '') {
+        return res.status(501).json({
+          error: "Could not get id from token headers"
+        })
+      }
+
+      let response = await eventservice.getEventByUserId(userId);
+
+      return res.status(200).json(response)
+      
+    } catch (error) {
+      return res.json({error})
+    }
+  }
+
 }

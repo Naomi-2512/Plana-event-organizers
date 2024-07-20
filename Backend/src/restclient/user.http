@@ -3,19 +3,19 @@ POST http://localhost:3000/users/create
 Content-type: application/json
 
 {
-    "userName" : "John25",
-    "phoneNumber" : "0143166543",
-    "email" : "john@gmail.com",
+    "userName" : "Dan25",
+    "phoneNumber" : "0154166543",
+    "email" : "dan@gmail.com",
     "password" : "@john2512",
     "profileImage" : "https://th.bing.com/th/id/R.50631c317e66eebf4900c4f49c632cd7?rik=aCtbLH8YYDyYjw&pid=ImgRaw&r=0",
     "location" : "southAfrica",
-    "userRole" : "attendee"
+    "userRole" : "manager"
 }
 
 ### Get all users
 GET http://localhost:3000/users/allUsers
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYWRjOWQ4ZS02OTlkLTQxY2YtYmJiOC1mYjgxYTA3YmUyNjMiLCJ1c2VyTmFtZSI6Ik5hb21pQyIsInBob25lTnVtYmVyIjoiMDE0MzI3NjU0MyIsImVtYWlsIjoibmFvbWljaGVnZTI1MTJAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTMkZ1NCclprLmQyNExFTnN0UkFpQ05sdXVVUUx4MUNaUERFaVRiNVJMbE5pbmx1dC9qYlk3aW0iLCJwcm9maWxlSW1hZ2UiOiJodHRwczovL3RoLmJpbmcuY29tL3RoL2lkL1IuNTA2MzFjMzE3ZTY2ZWViZjQ5MDBjNGY0OWM2MzJjZDc_cmlrPWFDdGJMSDhZWUR5WWp3JnBpZD1JbWdSYXcmcj0wIiwibG9jYXRpb24iOiJLaWVuaSIsInVzZXJSb2xlIjoiYWRtaW4iLCJpc01hbmFnZXIiOmZhbHNlLCJpc0RlbGV0ZWQiOmZhbHNlLCJpc1dlbGNvbWUiOmZhbHNlLCJpYXQiOjE3MjEzODgyNTAsImV4cCI6MTcyMTM5NTQ1MH0.6B4UwSRSLyOya-cDtX5C7KnyeLUckqrwJ8iaxegHyHs
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ZjRhMTA3Mi1jOTM3LTQ3ZDktYmNjZi1lZTViODBhNDE5OGQiLCJ1c2VyTmFtZSI6IkRhbjI1IiwicGhvbmVOdW1iZXIiOiIwMTU0MTY2NTQzIiwiZW1haWwiOiJkYW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTMkcWhYeHUuS0Y1YUhuTEVCMHhKLlpTZVhodzd2NmdRQ3hYbmZORnBGM2dMd3hpUncwcWdPU0siLCJwcm9maWxlSW1hZ2UiOiJodHRwczovL3RoLmJpbmcuY29tL3RoL2lkL1IuNTA2MzFjMzE3ZTY2ZWViZjQ5MDBjNGY0OWM2MzJjZDc_cmlrPWFDdGJMSDhZWUR5WWp3JnBpZD1JbWdSYXcmcj0wIiwibG9jYXRpb24iOiJzb3V0aEFmcmljYSIsInVzZXJSb2xlIjoibWFuYWdlciIsImlzTWFuYWdlciI6ZmFsc2UsImlzRGVsZXRlZCI6ZmFsc2UsImlzV2VsY29tZSI6ZmFsc2UsImlhdCI6MTcyMTM5NzQ2MSwiZXhwIjoxNzIxNDA0NjYxfQ.wEhCHuJbWBpt_QLc-Ieec3jG5R8RcPYMoY765KDIerc
 
 ### update User
 PUT http://localhost:3000/users/update
