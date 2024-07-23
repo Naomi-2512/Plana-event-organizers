@@ -12,19 +12,20 @@ export const verifyTokens = (req: extendedRequest, res: Response, next: NextFunc
 
   try {
 
-    let token = req.headers['token'] as string;
+    let authHeader = req.headers['authorization'];
 
-  if (!token) {
+  if (!authHeader) {
     return res.status(401).json({
       error: "You do not have access, to use this service"
     })
   }
   else {
+    let token = authHeader.split(' ')[1] as string;
 
     let data = jwt.verify(token, process.env.SECRET_KEY as string) as Tokens;
 
     req.info = data;
-
+    next();
   }
 
   }
@@ -34,5 +35,4 @@ export const verifyTokens = (req: extendedRequest, res: Response, next: NextFunc
     })
   }
 
-  next();
 }

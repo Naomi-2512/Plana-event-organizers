@@ -37,3 +37,15 @@
 .detailsDiv button:hover{
     opacity:0.8;
 }
+.message{
+    display: none;
+    width: 40%;
+    color: white;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border-radius: 10px;
+    top: 5vh;
+    padding:10px;
+}

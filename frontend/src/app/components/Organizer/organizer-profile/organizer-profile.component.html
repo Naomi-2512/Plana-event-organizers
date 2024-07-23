@@ -1,13 +1,13 @@
 <div class="user-profile">
-    <div class="profile-card">
+  <div class="profile-card" *ngFor="let user of users">
       <div class="imageCard">
-        <img src="./././guy.jpeg" alt="">
+        <img [src]="user.profileImage" [alt]="user.userName">
       </div>
       <div class="userDetails">
-        <h2><strong>Username:</strong> Ryan</h2>
-        <h2><strong>Phone Number:</strong>0123456876 </h2>
-        <h2><strong>Email:</strong>naomichege&#64;gmail.com </h2>
-        <h2><strong>Location:</strong> Thika</h2>
+        <h2><strong>Username:</strong> {{user.userName}}</h2>
+        <h2><strong>Phone Number:</strong> {{user.phoneNumber}} </h2>
+        <h2><strong>Email:</strong> {{user.email}}</h2>
+        <h2><strong>Location:</strong>  {{user.location}}</h2>
       </div> 
     </div>
   </div>

@@ -1,8 +1,7 @@
 import joi from 'joi'
 export const userSchema = joi.object({
-    userName: joi.string().min(5).max(30).required().messages({
+    userName: joi.string().max(30).required().messages({
       'string.empty': 'The fullname to e provided cannot be empty',
-      'string.min.base': 'The minimum characters for fullnames should be greater than 5'
     }),
     phoneNumber: joi.string().pattern(new RegExp('^[0-9]{10}$')).required().messages({
       'string.empty': 'Phone number field cannot be empty',

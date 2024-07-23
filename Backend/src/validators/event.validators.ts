@@ -1,17 +1,17 @@
 import joi from 'joi';
 
 export const eventSchema = joi.object({
-  eventName: joi.string().min(6).required().messages({
+  eventName: joi.string().required().messages({
     'string.empty': 'Event name field cannot be empty'
   }),
-  description: joi.string().min(3).required().messages({
+  description: joi.string().required().messages({
     'string.empty': 'Please enter the short description',
     'string.max.invalid': 'Short description requires at max 16 charachters'
   }),
-  longDescription: joi.string().min(3).required().messages({
+  longDescription: joi.string().required().messages({
     'string.empty': 'Long description cannot be empty'
   }),
-  location: joi.string().min(5).required().messages({
+  location: joi.string().required().messages({
     'string.empty': 'Location field cannot be empty'
   }),
   startDate: joi.date().required(),

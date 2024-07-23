@@ -7,12 +7,18 @@ import { Logins, Users } from '../interfaces/interface';
 })
 export class UsersService {
   baseUrl = 'http://localhost:3000/users';
-  token = new HttpHeaders({
-    'Authorisation': `Bearer ${localStorage.getItem('token') as string}`
-  })
+ 
 
   constructor(private http: HttpClient) { }
-  // {headers: this.token}
+
+  getAuthorizationToken(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+  }
+  
   registerUser(user: Users) {
     return this.http.post<{error?: string, message?: string}>(`${this.baseUrl}/create`, user, )
   }
@@ -22,36 +28,36 @@ export class UsersService {
   }
 
   updateUser(user:Users){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/update`, user,{headers:this.token})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/update`, user,{headers:this.getAuthorizationToken()})
   }
 
   getAllUsers(){
-    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/allUsers`, {headers:this.token})
+    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/allUsers`, {headers:this.getAuthorizationToken()})
   }
 
   getUserById(){
-    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/user-id`, {headers:this.token})
+    return this.http.get<{error?:string,message?:string,user:Users[]}>( `${this.baseUrl}/user-id`, {headers:this.getAuthorizationToken()})
   }
 
   //getting managers
   getUserByRole(){
-    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/user-role`, {headers:this.token})
+    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/user-role`, {headers:this.getAuthorizationToken()})
   }
 
   //approving admins
   updateAllUsersRoleByAdmin(){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateAll`, {headers:this.token})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateAll`, {headers:this.getAuthorizationToken()})
   }
 
   softDeleteUser(userId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/delete/:${userId}`, {headers:this.token})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/delete/:${userId}`, {headers:this.getAuthorizationToken()})
   }
 
   retrieveDeletedUser(userId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/getUser/:${userId}`, {headers:this.token})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/getUser/:${userId}`, {headers:this.getAuthorizationToken()})
   }
 
   retrieveAllDeletedUsers(){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/getUsers`, {headers:this.token})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/getUsers`, {headers:this.getAuthorizationToken()})
   }
 }

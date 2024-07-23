@@ -11,9 +11,13 @@ export interface Events {
     single :number ,
     couple:number ,
     groups :number ,
-    totalTickets :string ,
+    totalTickets :number,
+    bookedTickets:number,
+    remainingTickets:number,
     bookingDeadline :string 
 }
+
+
 export interface Users{
     userId : string,
     userName : string ,

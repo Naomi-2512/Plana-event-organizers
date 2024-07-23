@@ -121,6 +121,7 @@ export class UserService {
 
         let requiredUsers: string[] =[];
         let returnedUsers: Users[] = [];
+        let finalUsers: Users[] = [];
 
         let bookedUsers:Bookings[] = (await Helper.query(`select * from Bookings where eventId = '${eventId}'`)).recordset;
 
@@ -131,12 +132,20 @@ export class UserService {
         }
         else{
             for (let bookedUser of bookedUsers){
-                requiredUsers.push(bookedUser.eventId);
+                requiredUsers.push(bookedUser.userId);
             }
-            for (let requiredUser of requiredUsers){
-                let result = this.getUserById(requiredUser);
-                let singleUser:Users
-                
+            
+            if (returnedUsers.length > 0) {
+              for (let requiredUser of requiredUsers){
+                let result = (await(this.getUserById(requiredUser)))as unknown as Users[];
+                if (result) {
+                  returnedUsers.push(result[0]);
+                } 
+              }
+            }
+            return{
+              message: "Users successfully fetched",
+              users: returnedUsers
             }
         }
     }

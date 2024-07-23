@@ -1,54 +1,60 @@
 <div class="container">
+    <div class="message" *ngIf="errorMessage" [style]="displays">
+        <p>{{errorMessage}}</p>
+      </div>
+      <div class="message" *ngIf="success" [style]="displays">
+        <p>{{success}}</p>
+      </div>
     <div class="btn">
-        <button (click)="toggleForm()">Add Event</button>
+        <button (click)="toggleFormFlex()">Add Event</button>
     </div>
    
     <div class="content">
         <div class="titleDiv">
             <h1>Image</h1>
             <h1>Title</h1>
-            <h1>Price</h1>
             <h1>Location</h1>
-            <h1>Duration</h1>
-            <h1></h1>
+            <h1>Description</h1>
         </div>
         <div class="detailsDiv" *ngFor="let event of events">
             <div class="imageDiv">
-                <img [src]="event.image" [alt]="event.name">
+                <img [src]="event.images" [alt]="event.eventName">
             </div>
-            <h3>{{event.title}}</h3>
-             <h3>{{event.amount}}</h3>
+            <h3>{{event.eventName}}</h3>
              <h3>{{event.location}}</h3>
-             <h3> {{event.duration}}</h3>
+             <h3> {{event.description}}</h3>
              <button><img src="edit_note_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-            <button><img src="delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+            <button><img src="delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.png" alt="" (click)="deleteEvents(event.eventId)"></button>
         </div>
     </div>
 
 
-    <div class="form-container" *ngIf="showForm">
-        <form action="">
+    <div class="form-container" [style]="display" >
+        <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
             <label for="">Title:</label>
-            <input type="text">
+            <input type="text" formControlName="eventName">
             <label for="start-date">start-date</label>
-            <input type="text">
+            <input type="date" formControlName="startDate">
             <label for="">end-date</label>
-            <input type="text">
+            <input type="date" formControlName="endDate">
             <label for="">location</label>
-            <input type="text">
+            <input type="text" formControlName="location">
             <label for="">Description</label>
-            <input type="text">
+            <input type="text" formControlName="description">
+            <label for="">longDescription</label>
+            <input type="text" formControlName="longDescription">
             <label for="">Image</label>
-            <input type="file">
-            <label for="">price</label>
-            <input type="text">
+            <input type="file" (change)="geteventPhotos($event)">
             <label for="">ticketsNumber</label>
-            <input type="text">
-            <label for="ticketType">Ticket Type:</label>
-            <select id="ticketType" >
-                <option value="1 person">1 Person</option>
-                <option value="group of five">Group of Five</option>
-            </select>
+            <input type="text" formControlName="totalTickets">
+            <label for="">bookingDeadline</label>
+            <input type="date" formControlName="bookingDeadline">
+            <label for="">single's price</label>
+            <input type="text" formControlName="single">
+            <label for="">couple's price</label>
+            <input type="text" formControlName="couple">
+            <label for="">group of five price</label>
+            <input type="text" formControlName="groups">
             <button type="submit">Create</button>
             <button type="button" (click)="toggleForm()">Cancel</button> 
             

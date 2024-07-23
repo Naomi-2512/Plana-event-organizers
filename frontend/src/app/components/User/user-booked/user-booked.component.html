@@ -1,22 +1,28 @@
 <div class="container">
+    <div class="message" *ngIf="errorMessage" [style]="display">
+        <p>{{errorMessage}}</p>
+      </div>
+      <div class="message" *ngIf="success" [style]="display">
+        <p>{{success}}</p>
+      </div>
     <div class="content">
         <div class="titleDiv">
             <h1>Image</h1>
             <h1>Title</h1>
-            <h1>Price</h1>
             <h1>Location</h1>
-            <h1>Duration</h1>
+            <h1>startDate</h1>
+            <h1>endDate</h1>
             <h1>Action</h1>
         </div>
-        <div class="detailsDiv" *ngFor="let event of events">
+        <div class="detailsDiv" *ngFor="let event of events;let i = index">
             <div class="imageDiv">
-                <img [src]="event.image" [alt]="event.name">
+                <img [src]="event.images" [alt]="event.eventName">
             </div>
-            <h3>{{event.title}}</h3>
-             <h3>{{event.amount}}</h3>
+            <h3>{{event.eventName}}</h3>
              <h3>{{event.location}}</h3>
-             <h3> {{event.duration}}</h3>
-             <button>Cancel</button>
+             <h3>{{event.startDate |  date:'longDate'}}</h3>
+             <h3> {{event.endDate | date:'longDate'}}</h3>
+             <button (click)="cancelBooking(bookings[i].bookId)">Cancel</button>
         </div>
     </div>
 </div>

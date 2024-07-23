@@ -7,6 +7,16 @@ import mssql from 'mssql'
 
 export class EventService {
     async createEvent(userId: string, event: Events) {
+      let managerExists = (
+        await Helper.query(`select * from Users where userId = '${userId}' and isManager = 1`)
+      ).recordset;
+  
+      if (lodash.isEmpty(managerExists)) {
+        return {
+          error: "You are not authorised to update the event",
+        };
+      }
+
       let pool = await mssql.connect(sqlConfig);
       let eventId = v4();
   

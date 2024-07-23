@@ -42,6 +42,7 @@ export class LoginComponent {
           this.success = '',
           this.display = {}
 
+          localStorage.setItem('token',res.token as string)
           if(res.userRole == 'admin'){
             this.router.navigate(['/admin'])
           }
@@ -60,3 +61,4 @@ export class LoginComponent {
     
   }
 }
+

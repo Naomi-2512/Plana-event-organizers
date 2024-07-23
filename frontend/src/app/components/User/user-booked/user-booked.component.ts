@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Bookings, Events } from '../../../interfaces/interface';
+import { EventsService } from '../../../services/events.service';
+import { BookingsService } from '../../../services/bookings.service';
 
 @Component({
   selector: 'app-user-booked',
@@ -9,48 +12,53 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-booked.component.css'
 })
 export class UserBookedComponent {
-  events:any[] = [];
+  errorMessage:string = '';
+  success:string = '';
+  display = {};
+  events:Events[] = [];
+  bookings:Bookings[] = [];
+  bookId!:Bookings;
 
-  constructor(){}
-
-  ngOnInit():void {
-    this.events.push(
-      {
-        image:"zain.jpeg",
-        title:"A musical concert",
-        location:"Turkey",
-        duration:"4 days",
-        amount:"$1000"
-      },
-      {
-        image:"girls.png",
-        title:"A girls hangout",
-        location:"Goshens",
-        duration:"2 days",
-        amount:"$100"
-      },
-      {
-        image:"beach.jpeg",
-        title:"Beach Party",
-        location:"Mombasa",
-        duration:"4 days",
-        amount:"$100"
-      },
-      {
-        image:"tyla.jpg",
-        title:"A music Concert",
-        location:"Instabul",
-        duration:"4 days",
-        amount:"$1000"
-      },
-      {
-        image:"men.jpeg",
-        title:"Mens Conference",
-        location:"Nakuru",
-        duration:"6 days",
-        amount:"$100"
-      },
-  
-    );
+  constructor(private eventService:EventsService, private bookService:BookingsService){
+    this.displayBookings();
   }
+
+  displayBookings(){
+    this.bookService.getAllBookingsByUserId().subscribe(res=>{
+      this.events = res.events;
+      this.bookings = res.bookings;
+    })
+  }
+
+  cancelBooking(bookId:string){
+    this.bookService.deleteBooking(bookId).subscribe(res=>{
+      if(res.error ){
+        this.errorMessage = res.error;
+        this.display = {
+          'background-color':'red',
+          'display':'flex'
+        }
+        setTimeout(()=>{
+          this.errorMessage = '',
+          this.display = {}
+        },5000);
+      }
+      else if(res.message){
+        this.success = res.message;
+        this.display = {
+          'background-color':'green',
+          'display':'flex'
+        }
+        this.events = [];
+        this.bookings = [];
+        this.displayBookings();
+        setTimeout(()=>{
+          this.success = '',
+          this.display = {}
+        },2000)
+      }
+
+    })
+  }
+  
 }
