@@ -1,21 +1,20 @@
 <div class="container">
     <div class="content">
         <div class="titleDiv">
-            <h1>Title</h1>
-            <h1>Price</h1>
-            <h1>Location</h1>
-            <h1>Duration</h1>
-            <h1>Organizer</h1>
+            <h2>Title</h2>
+            <h2>Price(person)</h2>
+            <h2>price(couple)</h2>
+            <h2>price(group)</h2>
+            <h2>Location</h2>
             <h1></h1>
         </div>
         <div class="detailsDiv" *ngFor="let event of events">
-            <h3>{{event.title}}</h3>
-             <h3>{{event.amount}}</h3>
+            <h3>{{event.eventName}}</h3>
+             <h3>{{event.single}}</h3>
+             <h3>{{event.couple}}</h3>
+             <h3> {{event.groups}}</h3>
              <h3>{{event.location}}</h3>
-             <h3> {{event.duration}}</h3>
-             <h3>{{event.organizer}}</h3>
-             <button><img src="check_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-            <button><img src="cancel_presentation_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+             <button (click)="approveEvents(event.eventId)"><img src="check_24dp_75FB4C_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
         </div>
     </div>
 </div>

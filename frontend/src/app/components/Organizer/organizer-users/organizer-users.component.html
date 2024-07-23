@@ -9,12 +9,12 @@
         </div>
         <div class="detailsDiv" *ngFor="let user of users">
             <div class="imageDiv">
-                <img [src]="user.image" [alt]="user.name">
+                <img [src]="user.profileImage" [alt]="user.userName">
             </div>
-            <h3>{{user.name}}</h3>
-             <h3>{{user.Email}}</h3>
+            <h3>{{user.userName}}</h3>
+             <h3>{{user.email}}</h3>
              <h3>{{user.phoneNumber}}</h3>
-             <h3> {{user.Event}}</h3>
+             <h3> {{events[1].eventName}}</h3>
         </div>
     </div>
 </div>

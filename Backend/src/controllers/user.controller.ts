@@ -76,6 +76,17 @@ export class UserController {
     }
   }
 
+  async getapproveManagers(req: Request, res: Response) {
+    try {
+      let response = await userService.getapproveManagers();
+
+      return res.status(201).json(response);
+    }
+    catch (error) {
+      return res.json({ error });
+    }
+  }
+
   async getUserById(req: Request, res: Response) {
     try {
 
@@ -108,21 +119,21 @@ export class UserController {
     }
   }
 
-//   async updateRoleByAdmin(req: Request, res: Response) {
-//     try {
-
-//       let response = await userService.updateRoleByAdmin(req.params.userId);
-
-//       return res.status(201).json(response);
-//     }
-//     catch (error) {
-//       return res.json({ error });
-//     }
-//   }
-
   async updateAllUsersRoleByAdmin(req: Request, res: Response) {
     try {
       let response = await userService.updateAllUsersRoleByAdmin();
+
+      return res.status(201).json(response);
+    }
+    catch (error) {
+      return res.json({ error });
+    }
+  }
+
+  async updateuserRoleByAdmin(req: Request, res: Response) {
+    try {
+
+      let response = await userService.updateuserRoleByAdmin(req.params.userId);
 
       return res.status(201).json(response);
     }

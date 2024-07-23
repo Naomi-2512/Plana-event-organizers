@@ -85,6 +85,22 @@ export class UserService {
         }
     }
 
+    async getapproveManagers (){
+      let result = (await Helper .query(`select * from Users where isManager = 1`)).recordset;
+
+      if (lodash.isEmpty(result)) {
+         return{
+          error:"Error fetching approved managers"
+         } 
+      }
+      else{
+          return{
+              message:"Managers fetched successfully",
+              users:result
+          }
+      }
+  }
+
     async getUserById(userId:string){
         let result = ( await Helper.query(`select * from Users where userId = '${userId}'`)).recordset;
 
@@ -116,7 +132,7 @@ export class UserService {
             }
         }
     }
-
+    //getting users who have booked a specific event
     async getUsersByEventId(eventId:string){
 
         let requiredUsers: string[] =[];
@@ -145,7 +161,7 @@ export class UserService {
             }
             return{
               message: "Users successfully fetched",
-              users: returnedUsers
+              users: finalUsers
             }
         }
     }
@@ -163,6 +179,21 @@ export class UserService {
           }
         }
     }
+
+    async updateuserRoleByAdmin(userId:string) {
+      let result = (await Helper.query(`update Users set isManager = 1 where userRole = 'manager' and userId = '${userId}'`)).rowsAffected;
+  
+      if (result[0] < 1) {
+        return {
+          error: "Unable to approve user to manager"
+        }
+      }
+      else {
+        return {
+          message: "Manager approved successfully"
+        }
+      }
+  }
     async softDeleteUser(userId: string) {
 
         let userExists = (await Helper.query(`select * from Users where userId = '${userId}'`)).recordset;

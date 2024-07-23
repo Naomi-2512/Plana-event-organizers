@@ -12,11 +12,15 @@ userRouter.put('/update', verifyTokens, userContoller.updateUser);
 
 userRouter.get('/allUsers', verifyTokens, userContoller.getAllUsers);
 
+userRouter.get('/allManagers',verifyTokens, userContoller.getapproveManagers);
+
 userRouter.get('/user-id', verifyTokens, userContoller.getUserById);
 
 userRouter.get('/user-role', verifyTokens, userContoller.getUserByRole);
 
 userRouter.put('/updateAll', verifyTokens, userContoller.updateAllUsersRoleByAdmin);
+
+userRouter.post('/updateadmin/:userId', verifyTokens, userContoller.updateuserRoleByAdmin);
 
 userRouter.put('/delete/:userId', verifyTokens, userContoller.softDeleteUser);
 

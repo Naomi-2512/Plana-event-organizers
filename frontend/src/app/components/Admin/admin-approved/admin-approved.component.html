@@ -4,18 +4,20 @@
         <div class="titleDiv">
             <h1>Image</h1>
             <h1>Title</h1>
-            <h1>Price</h1>
+            <h1>singlePrice</h1>
+            <h1>couplePrice</h1>
+            <h1>groupPrice</h1>
             <h1>Location</h1>
-            <h1>Duration</h1>
         </div>
         <div class="detailsDiv" *ngFor="let event of events">
             <div class="imageDiv">
-                <img [src]="event.image" [alt]="event.name">
+                <img [src]="event.images" [alt]="event.eventName">
             </div>
-            <h3>{{event.title}}</h3>
-             <h3>{{event.amount}}</h3>
+            <h3>{{event.eventName}}</h3>
+             <h3>{{event.single}}</h3>
+             <h3>{{event.couple}}</h3>
+             <h3> {{event.groups}}</h3>
              <h3>{{event.location}}</h3>
-             <h3> {{event.duration}}</h3>
              
         </div>
     </div>

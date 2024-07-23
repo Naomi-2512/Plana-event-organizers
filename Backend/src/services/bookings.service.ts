@@ -252,13 +252,13 @@ export class BookingService {
     }
   }
 
-  async getBookedUsers(manager_id: string) {
+  async getBookedUsers(userId: string) {
     let userIds: string[] = [];
     let eventIds: string[] = [];
     let fetchedUsers: Users[] = [];
 
     let userExists = (
-      await Helper.query(`select * from Users where userId = '${manager_id}'`)
+      await Helper.query(`select * from Users where userId = '${userId}'`)
     ).recordset;
 
     if (userExists.length == 0) {
@@ -267,7 +267,7 @@ export class BookingService {
       };
     }
 
-    let eventsCreated = await eventService.getEventByUserId(manager_id);
+    let eventsCreated = await eventService.getEventByUserId(userId);
 
     if (eventsCreated.error) {
       return {

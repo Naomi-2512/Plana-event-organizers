@@ -32,7 +32,7 @@ export class EventsService {
 
   //approve an event
   updateEventStatusByAdmin(eventId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/:${eventId}`, {headers:this.getAuthorizationToken()})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/${eventId}`, {headers:this.getAuthorizationToken()})
   }
 
   updateAllEventStatusByAdmin(){
@@ -40,7 +40,7 @@ export class EventsService {
   }
 
   getEventByEventId(eventId:string){
-    return this.http.get<{error?:string,message?:string,event:Events[]}>( `${this.baseUrl}/oneEvent/:${eventId}`, {headers:this.getAuthorizationToken()})
+    return this.http.get<{error?:string,message?:string,event:Events}>( `${this.baseUrl}/oneEvent/:${eventId}`, {headers:this.getAuthorizationToken()})
   }
 
   deleteEvent(eventId: string, String?: StringConstructor){
@@ -48,7 +48,7 @@ export class EventsService {
   }
 
   getApprovedEvents(){
-    return this.http.get<{error?:string,message?:string}>( `${this.baseUrl}/approvedEvents`, {headers:this.getAuthorizationToken()})
+    return this.http.get<{error?:string,message?:string,events:Events[]}>( `${this.baseUrl}/approvedEvents`, {headers:this.getAuthorizationToken()})
   }
 
   //get organizers event

@@ -1,45 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Events } from '../../../interfaces/interface';
+import { EventsService } from '../../../services/events.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-pending',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './admin-pending.component.html',
   styleUrl: './admin-pending.component.css'
 })
-export class AdminPendingComponent {
+export class AdminPendingComponent { 
+  events:Events[] = [];
 
-  events:any[] = [];
+  constructor(private eventService:EventsService){
+    this.displayEvents();
+  }
 
-  constructor(){}
+  displayEvents(){
+    this.eventService.getAllEvents().subscribe(res=>{
+      this.events = res.events;
+    })
+  }
 
-  ngOnInit():void {
-    this.events.push(
-      {
-        image:"zain.jpeg",
-        title:"A musical concert",
-        location:"Turkey",
-        duration:"4 days",
-        amount:"$1000",
-        organizer:"Ryan"
-      },
-      {
-        image:"girls.png",
-        title:"A girls hangout",
-        location:"Goshens",
-        duration:"2 days",
-        amount:"$100",
-        organizer:"Nakeez"
-      },
-      {
-        image:"beach.jpeg",
-        title:"Beach Party",
-        location:"Mombasa",
-        duration:"4 days",
-        amount:"$100",
-        organizer:"Kristen"
-      },
-    );
+  approveEvents(eventId:string){
+    this.eventService.updateEventStatusByAdmin(eventId).subscribe(res=>{
+      console.log(res);
+      
+    })
   }
 }

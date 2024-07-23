@@ -32,7 +32,7 @@ export const routes: Routes = [
         {path: 'events', component: UserEventsComponent},
         {path: 'booked', component: UserBookedComponent},
         {path: 'logout', component: UserLogoutComponent},
-        {path: '', redirectTo: 'profile',pathMatch: 'full'}
+        {path: '', redirectTo: 'events',pathMatch: 'full'}
     ]},
     {path: 'organizer', component:OrganizerHomeComponent , children: [
         {path: 'dashboard', component: OrganizerDashboardComponent},
@@ -40,7 +40,7 @@ export const routes: Routes = [
         {path: 'users', component: OrganizerUsersComponent},
         {path: 'events', component: OrganizerEventsComponent},
         {path: 'logout', component: OrganizerLogoutComponent},
-        {path: '', redirectTo: 'profile',pathMatch: 'full'}
+        {path: '', redirectTo: 'dashboard',pathMatch: 'full'}
     ]},
     {path: 'admin', component: AdminHomeComponent , children: [
         {path: 'dashboard', component: AdminDashboardComponent},
@@ -49,6 +49,6 @@ export const routes: Routes = [
         {path: 'pending', component: AdminPendingComponent},
         {path: 'approved', component: AdminApprovedComponent},
         {path: 'logout', component: AdminLogoutComponent},
-        {path: '', redirectTo: 'profile',pathMatch: 'full'}
+        {path: '', redirectTo: 'dashboard',pathMatch: 'full'}
     ]}
 ];

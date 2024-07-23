@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Users } from '../../../interfaces/interface';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -9,41 +11,33 @@ import { Component } from '@angular/core';
   styleUrl: './admin-users.component.css'
 })
 export class AdminUsersComponent {
-  users:any[] = [];
+  users:Users[] = [];
+  userId!:Users;
 
-  constructor(){}
-
-  ngOnInit():void {
-    this.users.push(
-      {
-        image:"guyy.jpeg",
-        name:"Zayn",
-        Email:"zayn@gmail.com",
-        phoneNumber:"0176543290",
-        role:"Attendee",
-      },
-      {
-        image:"guy.jpeg",
-        name:"Ryan",
-        Email:"ryan@gmail.com",
-        phoneNumber:"0786554213",
-        role:"Organizer",
-      },
-      {
-        image:"girly.jpeg",
-        name:"Olivia",
-        Email:"olivia@gmail.com",
-        phoneNumber:"0111232403",
-        role:"Attendee",
-      },
-      {
-        image:"girrl.jpeg",
-        name:"Tyla",
-        Email:"tyla@gmail.com",
-        phoneNumber:"0786123441",
-        role:"organizer",
-      },
-  
-    );
+  constructor(private userService:UsersService){
+    this.getManagers();
   }
+
+  getManagers(){
+    this.userService.getUserByRole().subscribe(res=>{
+      this.users = res.users;
+    })
+  }
+
+  approveAllManagers(){
+    this.userService.updateAllUsersRoleByAdmin().subscribe(res=>{
+      console.log(res.error);
+      
+    })
+  }
+
+  approveOneManager(userId:string){
+    console.log(userId);
+    
+    this.userService.updateuserRoleByAdmin(userId).subscribe(res=>{
+      console.log(res);
+      
+    })
+  }
+
 }

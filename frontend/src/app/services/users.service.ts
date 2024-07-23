@@ -35,6 +35,10 @@ export class UsersService {
     return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/allUsers`, {headers:this.getAuthorizationToken()})
   }
 
+  getapproveManagers(){
+    return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/allManagers`, {headers:this.getAuthorizationToken()})
+  }
+
   getUserById(){
     return this.http.get<{error?:string,message?:string,user:Users[]}>( `${this.baseUrl}/user-id`, {headers:this.getAuthorizationToken()})
   }
@@ -44,13 +48,17 @@ export class UsersService {
     return this.http.get<{error?:string,message?:string,users:Users[]}>( `${this.baseUrl}/user-role`, {headers:this.getAuthorizationToken()})
   }
 
-  //approving admins
+  //approving managers
   updateAllUsersRoleByAdmin(){
     return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateAll`, {headers:this.getAuthorizationToken()})
   }
 
   softDeleteUser(userId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/delete/:${userId}`, {headers:this.getAuthorizationToken()})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/delete/${userId}`, {headers:this.getAuthorizationToken()})
+  }
+
+  updateuserRoleByAdmin(userId:string){
+    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/updateadmin/${userId}`, {headers:this.getAuthorizationToken()})
   }
 
   retrieveDeletedUser(userId:string){

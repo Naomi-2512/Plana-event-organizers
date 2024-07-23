@@ -29,12 +29,13 @@
 }
 .titleDiv{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr 1fr 200px;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 100px;
+    color: #8D6F64;
 
 }
 .detailsDiv{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr 1fr 100px 100px;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 100px;
     justify-content:center;
     align-items:center;
 }

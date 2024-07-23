@@ -17,3 +17,45 @@
         </div>
      </div>
 </div>
+
+<!-- <div class="container">
+    <div *ngIf="!selectedEvent">
+      <div class="productDiv" *ngFor="let event of events">
+        <div class="imageDiv">
+          <img [src]="event.images" [alt]="event.eventName">
+        </div>
+        <div class="productDetails">
+          <div class="details">
+            <h3>{{event.eventName}}</h3>
+            <h3>person: ${{event.single}}</h3>
+            <h3>couple: ${{event.couple}}</h3>
+            <h3>five: ${{event.groups}}</h3>
+          </div>
+          <div class="buttonDiv">
+            <button>Book</button>
+            <button (click)="viewEvent(event.eventId)">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedEvent" class="oneProduct">
+      <div class="imageDiv">
+        <img [src]="selectedEvent.images" [alt]="selectedEvent.eventName">
+      </div>
+      <div class="productDetails">
+        <div class="detail">
+          <h3>{{selectedEvent.eventName}}</h3>
+          <p>{{selectedEvent.longDescription}}</p>
+          <h3>person: ${{selectedEvent.single}}</h3>
+          <h3>couple: ${{selectedEvent.couple}}</h3>
+          <h3>five: ${{selectedEvent.groups}}</h3>
+        </div>
+        <div class="buttonsDiv">
+          <button >Book</button>
+          <button (click)="cancelView()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
