@@ -346,7 +346,7 @@ export class BookingService {
 
     if (lodash.isEmpty(bookingExists)) {
       return {
-        error: "Cannot find booked events"
+        error: "Booking to be approved not found"
       }
     }
 
@@ -369,7 +369,7 @@ export class BookingService {
     let userIds: string[] = [];
     let eventIds: string[] = [];
     let fetchedUsers: Users[] = [];
-    let approvedEvents: Events[] = [];
+    let approvedEvents: string[] = [];
     let finalEvents: Events[] = [];
 
     let userExists = (
@@ -383,6 +383,7 @@ export class BookingService {
     }
 
     let eventsCreated = await eventService.getEventByUserId(manager_id);
+    
 
     if (eventsCreated.error) {
       return {
@@ -408,59 +409,58 @@ export class BookingService {
           )).recordset;
 
           if (lodash.isEmpty(bookingsAvailable)) {
-            return {
-              error: "This event has no bookings yet"
-            };
+            return{
+              error:'users not approved yet'
+            };break;
           } else {
             for (let booking of bookingsAvailable) {
               userIds.push(booking.userId);
               approvedEvents.push(booking.eventId);
             }
+          }
+          if (userIds.length == 0) {
+            return {
+              error: "Unable to display users who have booked this event",
+            };
+          }
+          else {
+            for (let userId of userIds) {
+              let retrievedUser = await userSevice.getUserById(userId);
 
-            if (userIds.length == 0) {
+              if(retrievedUser.error) {
+                return {
+                  error: "The history of the user does not exist."
+                }
+                break;
+              }
+              else if (retrievedUser.user) {
+                fetchedUsers.push(retrievedUser.user[0] as unknown as Users);
+              }
+            }
+
+            if (fetchedUsers.length == 0) {
               return {
-                error: "Unable to display users who have booked this event",
+                error: "Unable to display the approved users retrieved.",
               };
             }
             else {
-              for (let userId of userIds) {
-                let retrievedUser = await userSevice.getUserById(userId);
-
-                if(retrievedUser.error) {
-                  return {
-                    error: "The history of the user does not exist."
-                  }
-                  break;
-                }
-                else if (retrievedUser.user) {
-                  fetchedUsers.push(retrievedUser.user[0] as unknown as Users);
-                }
-              }
-
-              if (fetchedUsers.length == 0) {
-                return {
-                  error: "Unable to display the approved users retrieved.",
-                };
-              }
-              else {
-                 for(let approvedEvent of approvedEvents) {
-                   let eventDetails = await eventService.getEventByEventId(approvedEvent.eventId);
-                   if(eventDetails.error) {
-                     return {
-                       error: "Unable to retrieve event details"
-                     }
-                    }
-                   else if (eventDetails.event) {
-                     let eventDetailsData = eventDetails.event as Events[];
-                     finalEvents.push(eventDetailsData[0]);
+               for(let approvedEvent of approvedEvents) {
+                 let eventDetails = await eventService.getEventByEventId(approvedEvent);
+                 if(eventDetails.error) {
+                   return {
+                     error: "Unable to retrieve event details"
                    }
+                  }
+                 else if (eventDetails.event) {
+                   let eventDetailsData = eventDetails.event as Events[];
+                   finalEvents.push(eventDetailsData[0]);
                  }
-                return {
-                  message: "approved users successfully retrieved",
-                  users: fetchedUsers,
-                  events: finalEvents as Events[],
-                };
-              }
+               }
+              return {
+                message: "approved users successfully retrieved",
+                users: fetchedUsers,
+                events: finalEvents as Events[],
+              };
             }
           }
         }

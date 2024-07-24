@@ -27,18 +27,22 @@
             </div>
         </div>
         <div class="user-info">
+            <h1 class="heading">Booked Users</h1>
             <div class="user-row header">
                 <div class="user-cell"><h2>Username</h2></div>
                 <div class="user-cell"><h2>Email</h2></div>
                 <div class="user-cell"><h2>Phone number</h2></div>
+                <div class="user-cell"><h2>Event</h2></div>
                 <div class="user-cell"><h2>Action</h2></div>
             </div>
-            <div class="user-row" *ngFor="let user of bookedUsers">
+            
+            <div class="user-row" *ngFor="let user of bookedUsers;let i = index">
                 <div class="user-cell">{{user.userName}}</div>
                 <div class="user-cell">{{user.email}}</div>
                 <div class="user-cell">{{user.phoneNumber}}</div>
+                <div class="user-cell">{{events[i].eventName}}</div>
                 <div class="user-cell">
-                    <button class="action-btn accept">✔</button>
+                    <button (click)="updateBookStatus(bookings[1].bookId)" class="action-btn accept">✔</button>
                     <button class="action-btn reject">✖</button>
                 </div>
             </div>

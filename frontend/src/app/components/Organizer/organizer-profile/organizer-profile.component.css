@@ -1,4 +1,4 @@
-.user-profile {
+/* .user-profile {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,4 +47,46 @@
 
 .profile-card strong {
   color:white;
+} */
+
+.user-profile{
+ height: 100vh;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+.profile-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  width: 70%;
+  border-radius: 10px;
+  border: 1px solid #8D6F64;
+}
+.imageCard{
+  width: 50%;
+  height: 100%;
+}
+.userDetails{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.imageCard img{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+button{
+  background-color: #8D6F64;
+  color: white;
+  border: none;
+  width: 35%;
+  height: 8%;
+  border-radius: 5px;
+  cursor: pointer;
 }

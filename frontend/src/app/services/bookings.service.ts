@@ -43,6 +43,6 @@ export class BookingsService {
   }
 
   updateBookStatus(bookId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/${bookId}`,{headers:this.getAuthorizationToken()})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/${bookId}`,{},{headers:this.getAuthorizationToken()})
   }
 }

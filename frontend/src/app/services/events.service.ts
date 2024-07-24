@@ -32,7 +32,7 @@ export class EventsService {
 
   //approve an event
   updateEventStatusByAdmin(eventId:string){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/${eventId}`, {headers:this.getAuthorizationToken()})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateStatus/${eventId}`,{}, {headers:this.getAuthorizationToken()})
   }
 
   updateAllEventStatusByAdmin(){
@@ -44,7 +44,7 @@ export class EventsService {
   }
 
   deleteEvent(eventId: string, String?: StringConstructor){
-    return this.http.delete<{error?:string,message?:string,event:Events[]}>( `${this.baseUrl}/delete/:${eventId}`, {headers:this.getAuthorizationToken()})
+    return this.http.delete<{error?:string,message?:string,event:Events[]}>( `${this.baseUrl}/delete/${eventId}`, {headers:this.getAuthorizationToken()})
   }
 
   getApprovedEvents(){

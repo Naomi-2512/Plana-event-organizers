@@ -1,5 +1,7 @@
 <div class="container">
     <div class="content">
+        
+        <button class="confirm" (click)="approveAllManagers()">confirm All</button>
         <div class="titleDiv">
             <h2></h2>
             <h2>UserName</h2>
@@ -18,7 +20,7 @@
              <h3> {{user.location}}</h3>
              <button (click)="approveOneManager(user.userId)">Confirm</button>
         </div>
-        <button class="confirm" (click)="approveAllManagers()">confirm All</button>
+        
     </div>
 </div>
 

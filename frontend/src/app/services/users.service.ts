@@ -50,7 +50,7 @@ export class UsersService {
 
   //approving managers
   updateAllUsersRoleByAdmin(){
-    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateAll`, {headers:this.getAuthorizationToken()})
+    return this.http.put<{error?:string,message?:string}>( `${this.baseUrl}/updateAll`,{}, {headers:this.getAuthorizationToken()})
   }
 
   softDeleteUser(userId:string){
@@ -58,7 +58,7 @@ export class UsersService {
   }
 
   updateuserRoleByAdmin(userId:string){
-    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/updateadmin/${userId}`, {headers:this.getAuthorizationToken()})
+    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/updateadmin/${userId}`,{}, {headers:this.getAuthorizationToken()})
   }
 
   retrieveDeletedUser(userId:string){

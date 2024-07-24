@@ -15,12 +15,16 @@ export class OrganizerUsersComponent {
   events:Events[] = [];
 
 
-  constructor(private bookService:BookingsService){}
+  constructor(private bookService:BookingsService){
+    this.approvedBookedUsers();
+  }
 
   approvedBookedUsers(){
     this.bookService.getApprovedBookedUsers().subscribe(res=>{
+      console.log(res);
+      
       this.users = res.users;
-      this.events = res.events;
+      this.events = res.events;  
     })
   }
 }

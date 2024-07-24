@@ -5,6 +5,10 @@ body {
     padding: 0;
     height: 100vh;
 }
+.heading{
+    margin-left: 30%;
+    margin-bottom: 10px;
+}
 
 .container {
     width: 100%;

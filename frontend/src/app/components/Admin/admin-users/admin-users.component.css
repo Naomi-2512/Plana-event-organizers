@@ -41,7 +41,7 @@
     border:none;
     color:white;
     background-color:green; 
-    margin-left: 30%;
+    margin-bottom: 8px;
 }
 .detailsDiv button:hover{
     opacity:0.8;

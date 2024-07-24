@@ -19,6 +19,7 @@
 }
 .form-container{
     position: fixed;
+    height: 100%;
     top: 0;
     bottom: 0;
     right: 0;
@@ -28,6 +29,7 @@
     z-index: 3;
     align-items:center;
     justify-content: center;
+    border-radius: 5px;
 }
 .btn{
     width: 100%;
@@ -84,25 +86,27 @@
     object-fit: contain;
 }
   
-  form {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    width: 80%;
-    overflow-y: auto;
-  }
-  
+form {
+background-color: white;
+display: flex;
+flex-direction: column;
+height: 90%;
+overflow-y: auto;
+width: 50%; 
+border-radius: 5px;
+}
+
   form label {
     margin-top: 10px;
+    margin-left: 10px;
   }
   
   form input, form select, form button {
     margin-top: 5px;
     padding: 10px;
-    background-color: #e9e2e0;
-    border: none;
+    border: 1px solid  #8D6F64;
     border-radius: 5px;
+    margin-left: 10px;
     
   }
   
