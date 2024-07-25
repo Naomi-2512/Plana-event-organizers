@@ -6,6 +6,7 @@
     align-items:center;
 }
 .message{
+    z-index: 1005;
     display: none;
     width: 40%;
     color: white;

@@ -1,3 +1,41 @@
+.message{
+  z-index: 1002;
+  display: none;
+  width: 40%;
+  color: white;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  border-radius: 10px;
+  top: 5vh;
+  padding:10px;
+}
+
+.bookCard{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.432);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookCard form{
+  background-color: white;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  border-radius: 5px;
+  justify-content: center;
+
+}
+
 .container{
     width: 100%;
     display: flex;
@@ -102,119 +140,42 @@
 }
 
 
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 2%;
+  align-items:center;
+}
+.content{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+}
+.titleDiv{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
 
-
-
-/* .container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 2%;
-  }
-  
-  .productDiv {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    margin-bottom: 20px;
-    height: 300px;
-    border-radius: 10px;
-  }
-  
-  .oneProduct {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    margin-bottom: 20px;
-    height: 500px;
-    border-radius: 10px;
-  }
-  
-  .imageDiv {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  .imageDiv img {
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  .productDetails {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  .details {
-    width: 50%;
-    margin-left: 2%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 4%;
-    margin-bottom: 4%;
-  }
-  
-  .detail {
-    width: 100%;
-    margin-left: 2%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 4%;
-    margin-bottom: 4%;
-  }
-  
-  .buttonDiv {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 20%;
-    margin-right: 2%;
-    height: 100%;
-  }
-  
-  .buttonsDiv {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    row-gap: 20%;
-    margin-right: 2%;
-    height: 30%;
-    align-items: center;
-  }
-  
-  .buttonDiv button,
-  .buttonsDiv button {
-    background-color: #8d6f64;
-    color: white;
-    height: 25%;
-    border-radius: 10px;
-    border: none;
-  }
-  
-  .buttonDiv button:hover,
-  .buttonsDiv button:hover {
-    background-color: black;
-  }
-   */
+}
+.detailsDiv{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;  
+  justify-content:center;
+  align-items:center;
+}
+.detailsDiv img{
+width:80%;
+height:100px;
+border-radius:10px;
+}
+.detailsDiv button{
+  width:80%;
+  height:40px;
+  border-radius:5px;
+  border:none;
+  color:white;
+  background-color:#8D6F64;
+}
+.detailsDiv button:hover{
+  opacity:0.8;
+}

@@ -13,6 +13,8 @@ import { Events } from '../../../interfaces/interface';
   styleUrl: './organizer-events.component.css'
 })
 export class OrganizerEventsComponent {
+  updateId: string = '';
+  value: string = 'Create';
   errorMessage:string = '';
   success:string = '';
   displays = {};
@@ -50,6 +52,21 @@ export class OrganizerEventsComponent {
     this.display = {
       'display': 'none'
     }
+
+    this.eventForm.patchValue({
+      eventName: '',
+        startDate: '',
+        endDate: '',
+        location: '',
+        description: '',
+        longDescription: '',
+        images: '',
+        single: '',
+        couple: '',
+        groups: '',
+        totalTickets: '',
+        bookingDeadline: ''
+    })
   }
 
   toggleFormFlex() {
@@ -57,6 +74,34 @@ export class OrganizerEventsComponent {
       'display': 'flex'
     }
   }
+
+  toggleUpdateFlex(eventId: string) {
+    this.updateId = eventId;
+    this.display = {
+      'display': 'flex'
+    }
+
+    this.eventService.getEventByEventId(eventId).subscribe(res=>{
+      let myEvent = (res.event as Events[])[0];
+
+      this.eventForm.patchValue({
+        eventName: myEvent.eventName,
+        startDate: myEvent.startDate,
+        endDate: myEvent.endDate,
+        location: myEvent.location,
+        description: myEvent.description,
+        longDescription: myEvent.longDescription,
+        images: myEvent.images,
+        single: myEvent.single,
+        couple: myEvent.couple,
+        groups: myEvent.groups,
+        totalTickets: myEvent.totalTickets,
+        bookingDeadline: myEvent.bookingDeadline
+      })
+    })
+    this.value = 'update'
+  }
+
   geteventPhotos(event:any){
     const file = event.target.files[0];
     console.log(file);
@@ -76,6 +121,58 @@ export class OrganizerEventsComponent {
       this.eventForm.patchValue({images:this.eventPhotos})
     })
     
+  }
+
+  chooseMethod() {
+    if(this.updateId != ''){
+
+      this.eventService.updateEvent(this.eventForm.value, this.updateId).subscribe(res=>{
+        if(res.error ){
+          this.errorMessage = res.error;
+          this.displays = {
+            'background-color':'red',
+            'display':'flex'
+          }
+          setTimeout(()=>{
+            this.errorMessage = '',
+            this.displays = {}
+          },5000)
+        }
+        else if(res.message){
+          this.success = res.message;
+          this.displays = {
+            'background-color':'green',
+            'display':'flex'
+          }
+          this.eventForm.setValue({
+            eventName: '',
+            startDate: '',
+            endDate: '',
+            location: '',
+            description: '',
+            longDescription: '',
+            images: [''],
+            single: '',
+            couple: '',
+            groups: '',
+            totalTickets: '',
+            bookingDeadline: ''
+          });
+          this.events = [];
+          this.displayEvents();
+          this.toggleForm()
+  
+          setTimeout(()=>{
+            this.success = '',
+            this.displays = {};
+          },2000)
+        }
+      })
+
+    }
+    else {
+      this.createEvent();
+    }
   }
 
   createEvent(){

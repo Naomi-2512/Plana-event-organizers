@@ -23,13 +23,13 @@
             <h3>{{event.eventName}}</h3>
              <h3>{{event.location}}</h3>
              <h3> {{event.description}}</h3>
-             <button><img src="edit_note_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+             <button (click)="toggleUpdateFlex(event.eventId)"><img src="edit_note_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <button><img src="delete_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.png" alt="" (click)="deleteEvents(event.eventId)"></button>
         </div>
     </div>
     
     <div class="form-container" [style]="display" >
-        <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+        <form [formGroup]="eventForm" (ngSubmit)="chooseMethod()">
             <label for="">Title:</label>
             <input type="text" formControlName="eventName">
             <label for="start-date">start-date</label>
@@ -54,7 +54,7 @@
             <input type="text" formControlName="couple">
             <label for="">group of five price</label>
             <input type="text" formControlName="groups">
-            <button type="submit">Create</button>
+            <input type="submit" [value]="value">
             <button type="button" (click)="toggleForm()">Cancel</button> 
             
         </form>

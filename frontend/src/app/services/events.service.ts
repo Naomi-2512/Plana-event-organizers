@@ -23,7 +23,7 @@ export class EventsService {
   }
 
   updateEvent(event:Events,eventId:string){
-    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/update/:${eventId}`, event,{headers:this.getAuthorizationToken()})
+    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/update/${eventId}`, event,{headers:this.getAuthorizationToken()})
   }
 
   getAllEvents(){
@@ -40,7 +40,7 @@ export class EventsService {
   }
 
   getEventByEventId(eventId:string){
-    return this.http.get<{error?:string,message?:string,event:Events}>( `${this.baseUrl}/oneEvent/:${eventId}`, {headers:this.getAuthorizationToken()})
+    return this.http.get<{error?:string,message?:string,event:Events[]}>( `${this.baseUrl}/oneEvent/${eventId}`, {headers:this.getAuthorizationToken()})
   }
 
   deleteEvent(eventId: string, String?: StringConstructor){

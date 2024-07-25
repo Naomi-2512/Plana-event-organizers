@@ -19,7 +19,7 @@ export class BookingsService {
   }
 
   createBooking(book:Bookings,eventId:string){
-    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/create/:${eventId}`, book,{headers:this.getAuthorizationToken()})
+    return this.http.post<{error?:string,message?:string}>( `${this.baseUrl}/create/${eventId}`, book,{headers:this.getAuthorizationToken()})
   }
 
   updateBooking(book:Bookings,bookId:string){

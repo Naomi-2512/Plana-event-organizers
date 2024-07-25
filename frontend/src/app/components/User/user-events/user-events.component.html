@@ -1,3 +1,9 @@
+<div class="message" *ngIf="errorMessage" [style]="display">
+  <p>{{errorMessage}}</p>
+</div>
+<div class="message" *ngIf="success" [style]="display">
+  <p>{{success}}</p>
+</div>
 <div class="container">
     <div class="productDiv" *ngFor="let event of events">
         <div class="imageDiv">
@@ -11,51 +17,44 @@
              <h3>five: ${{event.groups}}</h3>
          </div>
          <div class="buttonDiv">
-             <button>Book</button>
-             <button>View</button>
+             <button (click)="toggleForm(event.eventId)">Book</button>
+             <button (click)="viewOne(event.eventId)">View</button>
          </div>
         </div>
      </div>
+     <div class="content" [style]="displays">
+      <div class="titleDiv">
+          <h1>Image</h1>
+          <h1>Title</h1>
+          <h1>Description</h1>
+          <h1>startDate</h1>
+          <h1>endDate</h1>
+          <h1>Action</h1>
+      </div>
+      <div class="detailsDiv">
+          <div class="imageDiv">
+              <img [src]="event.images" [alt]="event.eventName">
+          </div>
+          <h3>{{event.eventName}}</h3>
+           <h3>{{event.location}}</h3>
+           <h3>{{event.startDate |  date:'longDate'}}</h3>
+           <h3> {{event.endDate | date:'longDate'}}</h3>
+           <button (click)="toogleViewOne()">Cancel</button>
+      </div>
+  </div>
 </div>
 
-<!-- <div class="container">
-    <div *ngIf="!selectedEvent">
-      <div class="productDiv" *ngFor="let event of events">
-        <div class="imageDiv">
-          <img [src]="event.images" [alt]="event.eventName">
-        </div>
-        <div class="productDetails">
-          <div class="details">
-            <h3>{{event.eventName}}</h3>
-            <h3>person: ${{event.single}}</h3>
-            <h3>couple: ${{event.couple}}</h3>
-            <h3>five: ${{event.groups}}</h3>
-          </div>
-          <div class="buttonDiv">
-            <button>Book</button>
-            <button (click)="viewEvent(event.eventId)">View</button>
-          </div>
-        </div>
-      </div>
+<div class="bookCard" [style]="styles">
+  <form #bookingForm="ngForm" (ngSubmit)="submitForm(bookingForm.value, eventId)">
+    <label for="Tickettype">TicketType</label>
+    <select name="ticketType" id="" ngModel>
+      <option value="single">single</option>
+      <option value="couple">couple</option>
+      <option value="groups">groups</option>
+    </select>
+    <div class="btn">
+      <button type="button" (click)="toggleForm(eventId)">Cancel</button>
+    <button type="submit">Submit</button>
     </div>
-  
-    <div *ngIf="selectedEvent" class="oneProduct">
-      <div class="imageDiv">
-        <img [src]="selectedEvent.images" [alt]="selectedEvent.eventName">
-      </div>
-      <div class="productDetails">
-        <div class="detail">
-          <h3>{{selectedEvent.eventName}}</h3>
-          <p>{{selectedEvent.longDescription}}</p>
-          <h3>person: ${{selectedEvent.single}}</h3>
-          <h3>couple: ${{selectedEvent.couple}}</h3>
-          <h3>five: ${{selectedEvent.groups}}</h3>
-        </div>
-        <div class="buttonsDiv">
-          <button >Book</button>
-          <button (click)="cancelView()">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  
+  </form>
+</div>
